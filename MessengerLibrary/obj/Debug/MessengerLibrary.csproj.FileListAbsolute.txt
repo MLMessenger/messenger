@@ -1,0 +1,6 @@
+c:\users\mostrometskyi\source\repos\MessengerLibrary\MessengerLibrary\bin\Debug\MessengerLibrary.dll
+c:\users\mostrometskyi\source\repos\MessengerLibrary\MessengerLibrary\bin\Debug\MessengerLibrary.pdb
+c:\users\mostrometskyi\source\repos\MessengerLibrary\MessengerLibrary\obj\Debug\MessengerLibrary.csprojAssemblyReference.cache
+c:\users\mostrometskyi\source\repos\MessengerLibrary\MessengerLibrary\obj\Debug\MessengerLibrary.csproj.CoreCompileInputs.cache
+c:\users\mostrometskyi\source\repos\MessengerLibrary\MessengerLibrary\obj\Debug\MessengerLibrary.dll
+c:\users\mostrometskyi\source\repos\MessengerLibrary\MessengerLibrary\obj\Debug\MessengerLibrary.pdb
