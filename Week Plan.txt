@@ -1,0 +1,8 @@
+from 24.09
+Add Decoder, Receiver, Sender for Client-Server architecture
+to 1.10
+
+from 1.10 
+create client and server projects
+create connection between client and server
+~ to 8.10
