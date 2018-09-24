@@ -1,0 +1,5 @@
+C:\Git\messenger\MessengerLibrary\bin\Debug\MessengerLibrary.dll
+C:\Git\messenger\MessengerLibrary\bin\Debug\MessengerLibrary.pdb
+C:\Git\messenger\MessengerLibrary\obj\Debug\MessengerLibrary.csprojResolveAssemblyReference.cache
+C:\Git\messenger\MessengerLibrary\obj\Debug\MessengerLibrary.dll
+C:\Git\messenger\MessengerLibrary\obj\Debug\MessengerLibrary.pdb

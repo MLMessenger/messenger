@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace MessengerLibrary
 {
-    public class ShortUserData
+    public class ShortUserData // short user descriprion
     {
         public ShortUserData() {}
         public long UserId;
         public string NickName;
-        public string ShortInfo;
     }
 }

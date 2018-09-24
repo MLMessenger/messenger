@@ -7,10 +7,13 @@ using System.Threading.Tasks;
 
 namespace MessengerLibrary.DataEncoder
 {
-    class DataEncoder
+    class DataEncoder // this class encode object to string and string to bytes 
     {
         private readonly IEncoderProvider _provider;
-        public DataEncoder(IEncoderProvider provider) => _provider = provider;
+        public DataEncoder(IEncoderProvider provider)
+        {
+            _provider = provider;
+        }
         public byte[] GetBytes()
         {
             return _provider.Encode();

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MessengerLibrary
 {
-    public class ChatRoom
+    public class ChatRoom // description of the data for each room, 1 to 1 is also room
     {
         public ChatRoom() { }
         public long id;

@@ -41,11 +41,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChatRoom.cs" />
+    <Compile Include="ConnectionDirector\ConnectionDirector.cs" />
+    <Compile Include="ConnectionDirector\IConnectionDirector.cs" />
     <Compile Include="DataEncoder\DataEncoderProviders\ChatRoomEncoderProvider.cs" />
     <Compile Include="DataEncoder\DataEncoder.cs" />
     <Compile Include="DataEncoder\DataEncoderProviders\ShortUserDataEncoder.cs" />
     <Compile Include="DataEncoder\DataEncoderProviders\UserDataEncoder.cs" />
     <Compile Include="DataEncoder\IEncoderProvider.cs" />
+    <Compile Include="Message.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShortUserData.cs" />
     <Compile Include="User.cs" />
