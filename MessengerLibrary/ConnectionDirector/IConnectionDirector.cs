@@ -11,10 +11,15 @@ namespace MessengerLibrary.ConnectionDirector
         void Direct(string XML);
 
         void OnNewMessageAdded(Message message);
+
         void OnFullUserInfoReceived(User user);
         void OnCurrentUserUpdated(User currentUser);
+        void OnUserConnected(User currentUser);
+
         void OnShortUserInfoUpdated(ShortUserData shortUserData);
+
         void OnNewChatRoomAdded(ChatRoom chatRoom);
+        void OnNewUserInChatEntered(ChatRoom chatRoom);
 
     }
 }

@@ -46,7 +46,9 @@
     <Compile Include="ConnectionDirector\Events\MessageEventArgs.cs" />
     <Compile Include="ConnectionDirector\Events\ShortUserDataEventArgs.cs" />
     <Compile Include="ConnectionDirector\Events\UserEventAgrs.cs" />
+    <Compile Include="ConnectionDirector\EventType.cs" />
     <Compile Include="ConnectionDirector\IConnectionDirector.cs" />
+    <Compile Include="ConnectionDirector\Parsers\IXMLParser.cs" />
     <Compile Include="DataEncoder\DataEncoderProviders\ChatRoomEncoderProvider.cs" />
     <Compile Include="DataEncoder\DataEncoder.cs" />
     <Compile Include="DataEncoder\DataEncoderProviders\ShortUserDataEncoder.cs" />

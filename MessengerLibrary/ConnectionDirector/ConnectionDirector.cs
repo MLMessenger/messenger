@@ -1,4 +1,5 @@
 ﻿using MessengerLibrary.ConnectionDirector.Events;
+using MessengerLibrary.ConnectionDirector.Parsers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,18 +11,49 @@ namespace MessengerLibrary.ConnectionDirector
     public class ClientConnectionDirector
         : IClientConnectionDirector
     {
+        IXMLParser iXMLParser;
         //eventHandlers
         public event EventHandler<MessageEventArgs> NewMessageAdded;
+
         public event EventHandler<ChatRoomEventArgs> NewChatRoomAdded;
+        public event EventHandler<ChatRoomEventArgs> NewUserInChatEntered;
+
         public event EventHandler<ShortUserDataEventArgs> ShortUserInfoUpdated;
 
         public event EventHandler<UserEventAgrs> CurrentUserUpdated;
         public event EventHandler<UserEventAgrs> FullUserInfoReceived;
-
-        public void Direct(string XML) // this method trigger events
+        public event EventHandler<UserEventAgrs> UserConnected;
+        
+        public void Direct(string XML)  // this method trigger events
         {
-            throw new NotImplementedException();
-            // parse XML and trigger events
+            switch (iXMLParser.GetEventType(XML))
+            {
+                case EventType.NewMessageAdded:
+                    OnNewMessageAdded(iXMLParser.GetMessage(XML));
+                    break;
+                case EventType.FullUserInfoReceived:
+                    OnFullUserInfoReceived(iXMLParser.GetUser(XML));
+                    break;
+                case EventType.CurrentUserUpdated:
+                    OnCurrentUserUpdated(iXMLParser.GetUser(XML));
+                    break;
+                case EventType.UserConnected:
+                    OnUserConnected(iXMLParser.GetUser(XML));
+                    break;
+                case EventType.ShortUserInfoUpdated:
+                    OnShortUserInfoUpdated(iXMLParser.GetShortUserData(XML));
+                    break;
+                case EventType.NewChatRoomAdded:
+                    OnNewChatRoomAdded(iXMLParser.GetChatRoom(XML));
+                    break;
+                case EventType.NewUserInChatEntered:
+                    OnNewUserInChatEntered(iXMLParser.GetChatRoom(XML));
+                    break;
+
+                default:
+                    throw new Exception("OTHER CASE");
+                    break;
+            }
         }
 
         public void OnNewMessageAdded(Message message)
@@ -44,7 +76,14 @@ namespace MessengerLibrary.ConnectionDirector
         {
             FullUserInfoReceived(this, new UserEventAgrs(user));
         }
-
+        public void OnUserConnected(User currentUser)
+        {
+            UserConnected(this, new UserEventAgrs(currentUser));
+        }
+        public void OnNewUserInChatEntered(ChatRoom chatRoom)
+        {
+            NewUserInChatEntered(this,new ChatRoomEventArgs(chatRoom));
+        }
 
     }
 }
