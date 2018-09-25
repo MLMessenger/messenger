@@ -42,6 +42,10 @@
   <ItemGroup>
     <Compile Include="ChatRoom.cs" />
     <Compile Include="ConnectionDirector\ConnectionDirector.cs" />
+    <Compile Include="ConnectionDirector\Events\ChatRoomEventArgs.cs" />
+    <Compile Include="ConnectionDirector\Events\MessageEventArgs.cs" />
+    <Compile Include="ConnectionDirector\Events\ShortUserDataEventArgs.cs" />
+    <Compile Include="ConnectionDirector\Events\UserEventAgrs.cs" />
     <Compile Include="ConnectionDirector\IConnectionDirector.cs" />
     <Compile Include="DataEncoder\DataEncoderProviders\ChatRoomEncoderProvider.cs" />
     <Compile Include="DataEncoder\DataEncoder.cs" />
