@@ -5,17 +5,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MessengerLibrary.DataReceivers.DataDecoder;
+using MessengerLibrary.DataDecoder;
 
-namespace MessengerLibrary.DataDecoder
+namespace MessengerLibrary.DataReceivers.DataDecoder
 {
-    class DataDecoder // this class encode object to string and string to bytes 
+    public class DataDecoder 
+        : IDataDecoder// this class encode object to string and string to bytes 
     {
         private readonly IDecoderProvider _provider;
+        public DataDecoder()
+        {
+        }
         public DataDecoder(IDecoderProvider provider)
         {
             _provider = provider;
         }
-        public string GetString(byte[] symbol)
+        public string Decode(byte[] symbol)
         {
             return _provider.Decode(symbol);
         }

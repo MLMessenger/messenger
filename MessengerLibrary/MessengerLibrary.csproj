@@ -51,6 +51,7 @@
     <Compile Include="ConnectionDirector\Parsers\IXMLParser.cs" />
     <Compile Include="DataReceivers\DataDecoder\ChatRoomDecoderProvider.cs" />
     <Compile Include="DataReceivers\DataDecoder\DataDecoder.cs" />
+    <Compile Include="DataReceivers\DataDecoder\IDataDecoder.cs" />
     <Compile Include="DataReceivers\DataDecoder\IDecoderProvider.cs" />
     <Compile Include="DataReceivers\DataDecoder\ShortUserDataDecoder.cs" />
     <Compile Include="DataReceivers\DataDecoder\UserDataDecoder.cs" />

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MessengerLibrary.DataSenders.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,7 @@ namespace MessengerLibrary.ConnectionDirector.Parsers
     public interface IXMLParser
     {
         EventType GetEventType(string str);
+        RequestType GetRequestType(string str);
 
         Message GetMessage(string str);
 
