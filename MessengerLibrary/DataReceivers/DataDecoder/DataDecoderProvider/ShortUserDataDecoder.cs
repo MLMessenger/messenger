@@ -4,17 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MessengerLibrary.DataEncoder.DataEncoderProviders
+namespace MessengerLibrary.DataDecoder.DataDecoderProviders
 {
-    public class ShortUserDataEncoder
-        : IEncoderProvider
+    class ShortUserDataDecoder
+    : IDecoderProvider
     {
         private readonly ShortUserData _shortUserData;
-        public ShortUserDataEncoder(ShortUserData shortUserData)
+        public ShortUserDataDecoder(ShortUserData shortUserData)
         {
             _shortUserData = shortUserData;
         }
-        public byte[] Encode()
+        public string Decode(byte[] symbol)
         {
             throw new NotImplementedException();
         }

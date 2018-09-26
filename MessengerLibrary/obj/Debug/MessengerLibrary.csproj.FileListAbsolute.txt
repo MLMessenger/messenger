@@ -1,0 +1,2 @@
+C:\Git\messenger\MessengerLibrary\obj\Debug\MessengerLibrary.csprojAssemblyReference.cache
+C:\Git\messenger\MessengerLibrary\obj\Debug\MessengerLibrary.csproj.CoreCompileInputs.cache

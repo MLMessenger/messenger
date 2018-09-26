@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MessengerLibrary.ConnectionDirector
+namespace MessengerLibrary.DataEncoder.Encryption
 {
-    public interface IClientConnectionDirector
+    public interface IEncryptable
     {
-        void Direct(string XML);
-
+        byte[] Encrypt(string XML);
     }
 }

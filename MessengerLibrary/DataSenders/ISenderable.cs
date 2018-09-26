@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MessengerLibrary.DataEncoder
+namespace MessengerLibrary.DataSenders
 {
-    public interface IEncoderProvider
+    public interface ISenderable
     {
-        byte[] Encode();
+        void Send(byte[] bytes);
     }
 }

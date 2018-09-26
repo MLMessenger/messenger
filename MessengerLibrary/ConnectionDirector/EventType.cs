@@ -17,6 +17,8 @@ namespace MessengerLibrary.ConnectionDirector
         ShortUserInfoUpdated,
 
         NewChatRoomAdded,
-        NewUserInChatEntered
+        NewUserInChatEntered,
+
+        AlreadyExistUserExceptionDetected
     }
 }
