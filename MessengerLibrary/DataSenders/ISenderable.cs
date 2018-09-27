@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MessengerLibrary.DataSenders
 {
-    public interface ISenderable
+    public interface ISendable
     {
         void Send(byte[] bytes);
     }

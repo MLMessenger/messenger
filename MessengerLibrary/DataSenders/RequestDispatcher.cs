@@ -14,7 +14,7 @@ namespace MessengerLibrary.DataSenders
     {
         private readonly IXMLDataProvider xmlDataProvider;
         private readonly IEncryptable encryptable;
-        private readonly ISenderable sender;
+        private readonly ISendable sender;
         public void Connect(User user)
         {
             Provide(xmlDataProvider.CreateXML(RequestType.Connect, user));
@@ -40,7 +40,6 @@ namespace MessengerLibrary.DataSenders
 
         public void InviteUserToChat(User newUser, ChatRoom chatRoom)
         {
-            // add newUser to members in chat room
             var newList = chatRoom.members.ToList();
             //newList.Add(newUser); should convert to ShortUserData
             chatRoom.members = newList;
