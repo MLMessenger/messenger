@@ -1,6 +1,7 @@
 ﻿using MessengerLibrary;
 using MessengerLibrary.ConnectionDirector.Parsers;
 using MessengerLibrary.DataReceivers.DataDecoder;
+using Server.DataStorage;
 using System;
 using System.Net;
 using System.Net.Sockets;
@@ -15,6 +16,7 @@ namespace Server
         private IPEndPoint endPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 6767);
         private readonly IXMLParser parser;
         private Socket serverSocket;
+        private ServerEventHandler serverEventHandler;
         public Server()
         {
             serverSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.IP);
@@ -52,14 +54,16 @@ namespace Server
         {
             var requestBytes = new byte[4096];
             string requestString = Encoding.Unicode.GetString(e.Buffer, 0, e.Buffer.Length);
-            HandleEvent(requestString);
+            HandleEvent(requestString, (Socket)sender);
         }
-        private void HandleEvent(string xml)
+        private void HandleEvent(string xml, Socket socket)
         {
             switch (parser.GetRequestType(xml))
             {
                 case MessengerLibrary.DataSenders.Data.RequestType.Connect:
-                    HandleConnectReuqest(parser.GetUser(xml));
+                    User usr = parser.GetUser(xml);
+                    DataStorage.DataStorage.onlineUsersSocketDictionary.Add(usr, socket);
+                    HandleConnectReuqest(usr);
                     break;
 
                 case MessengerLibrary.DataSenders.Data.RequestType.CreateNewChat:
@@ -78,6 +82,8 @@ namespace Server
             }
         }
         private void HandleConnectReuqest(User user)
-        { }
+        {
+            serverEventHandler.userConnected(user);
+        }
     }
 }

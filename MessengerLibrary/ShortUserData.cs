@@ -11,5 +11,6 @@ namespace MessengerLibrary
         public ShortUserData() {}
         public long UserId;
         public string NickName;
+        public bool isOnline;
     }
 }
