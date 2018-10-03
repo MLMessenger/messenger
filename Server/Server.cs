@@ -1,6 +1,10 @@
 ﻿using MessengerLibrary;
+using MessengerLibrary.ConnectionDirector;
 using MessengerLibrary.ConnectionDirector.Events;
 using MessengerLibrary.ConnectionDirector.Parsers;
+using MessengerLibrary.DataEncoder;
+using MessengerLibrary.DataEncoder.Encryption;
+using MessengerLibrary.DataEncoder.XMLDataCreators;
 using MessengerLibrary.DataReceivers.DataDecoder;
 using Server.DataStorage;
 using Server.DataStorage.Notifications;
@@ -30,8 +34,9 @@ namespace Server
             serverEventHandler.NewMessageAdded += onNewMessageAdded;
             serverEventHandler.NewUserConnected += onNewUserConnected;
             serverEventHandler.UserDisconnected += onNewUserDisconnected;
+            serverEventHandler.ChatRoomUpdated += onChatRoomUpdated;
+            serverEventHandler.NewChatRoomAdded += onNewChatRoomAdded;
         }
-
 
         public void Run()
         {
@@ -77,18 +82,35 @@ namespace Server
                     break;
 
                 case MessengerLibrary.DataSenders.Data.RequestType.CreateNewChat:
+                    serverEventHandler.NewChatCreated(parser.GetChatRoom(xml));
                     break;
 
                 case MessengerLibrary.DataSenders.Data.RequestType.InviteUserToChat:
+                    serverEventHandler.NewUserToChatInvited(parser.GetChatRoom(xml));
                     break;
 
                 case MessengerLibrary.DataSenders.Data.RequestType.RegisterNewUser:
+                    serverEventHandler.registerNewUser(parser.GetUser(xml));
                     break;
 
                 case MessengerLibrary.DataSenders.Data.RequestType.SendMessage:
                     serverEventHandler.newMessageSent(parser.GetMessage(xml));
                     break;
+
+                case MessengerLibrary.DataSenders.Data.RequestType.Disconnect:
+                    serverEventHandler.userDisconnected(parser.GetUser(xml));
+                    break;
+
+                case MessengerLibrary.DataSenders.Data.RequestType.FindUser:
+                    throw new NotImplementedException();
+                    break;
+
+                case MessengerLibrary.DataSenders.Data.RequestType.AddFriend:
+                    throw new NotImplementedException();
+                    break;
+
                 default:
+                    throw new NotImplementedException();
                     break;
             }
         }
@@ -99,17 +121,47 @@ namespace Server
         //////////////////////////////////////////////////////////
         protected void onNewMessageAdded(object sender, ExtendedMessageEventArgs e)
         {
-            
+            IEncryptable encryptable;
+            IXMLDataProvider XMLDataProvider;
+            //byte[] mockBuffer = new DataEncoder(encryptable).GetBytes(XMLDataProvider.CreateXML(EventType.NewMessageAdded, e.message));
+            //onlineUsersSocketDictionary[e.user.UserId].Send(mockBuffer);
         }
 
         protected void onNewUserConnected(object sender, UserEventAgrs e)
         {
-            throw new NotImplementedException();
+            IEncryptable encryptable;
+            IXMLDataProvider XMLDataProvider;
+            //byte[] mockBuffer = new DataEncoder(encryptable).GetBytes(XMLDataProvider.CreateXML(EventType.NewMessageAdded, e.message));
+            //onlineUsersSocketDictionary[e.user.UserId].Send(mockBuffer);
         }
 
         protected void onNewUserDisconnected(object sender, UserEventAgrs e)
         {
-            throw new NotImplementedException();
+            IEncryptable encryptable;
+            IXMLDataProvider XMLDataProvider;
+            //byte[] mockBuffer = new DataEncoder(encryptable).GetBytes(XMLDataProvider.CreateXML(EventType.NewMessageAdded, e.message));
+            //onlineUsersSocketDictionary[e.user.UserId].Send(mockBuffer);
+        }
+
+        protected void onChatRoomUpdated(object sender, ChatRoomEventArgs e)
+        {
+
+            IEncryptable encryptable;
+            IXMLDataProvider XMLDataProvider;
+            //byte[] mockBuffer = new DataEncoder(encryptable).GetBytes(XMLDataProvider.CreateXML(EventType.NewMessageAdded, e.message));
+            //onlineUsersSocketDictionary[e.user.UserId].Send(mockBuffer);
+        }
+
+        protected void onNewChatRoomAdded(object sender, ChatRoomEventArgs e)
+        {
+
+            IEncryptable encryptable;
+            IXMLDataProvider XMLDataProvider;
+            foreach (var item in e.chatRoom.members)
+            {
+                //byte[] mockBuffer = new DataEncoder(encryptable).GetBytes(XMLDataProvider.CreateXML(EventType.NewMessageAdded, e.message));
+                //onlineUsersSocketDictionary[e.user.UserId].Send(mockBuffer);
+            }
         }
     }
 }

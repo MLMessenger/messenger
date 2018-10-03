@@ -12,6 +12,9 @@ namespace MessengerLibrary.DataSenders.Data
         CreateNewChat,
         SendMessage,
         RegisterNewUser,
-        Connect
+        Connect,
+        Disconnect,
+        AddFriend,
+        FindUser
     }
 }

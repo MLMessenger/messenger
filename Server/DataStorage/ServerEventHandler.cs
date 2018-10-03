@@ -14,9 +14,13 @@ namespace Server.DataStorage
         public event EventHandler<UserEventAgrs>                  NewUserConnected;
         public event EventHandler<UserEventAgrs>                  UserDisconnected;
         public event EventHandler<UserEventAgrs>                  NewUserRegistered;
+        public event EventHandler<UserEventAgrs>                  UserFound;
+        public event EventHandler<UserEventAgrs>                  UserUpdated;
+
         public event EventHandler<ExtendedMessageEventArgs>       NewMessageAdded;
 
-
+        public event EventHandler<ChatRoomEventArgs>              ChatRoomUpdated;
+        public event EventHandler<ChatRoomEventArgs>              NewChatRoomAdded;
 
         public void registerNewUser(User user)
         {
@@ -36,6 +40,22 @@ namespace Server.DataStorage
                 }
             }
 
+        }
+        public void NewChatCreated(ChatRoom chatRoom)
+        {
+            NewChatRoomAdded(this, new ChatRoomEventArgs(chatRoom));
+            // remoteDataStorage.Add(chatRoom); adding user to DB
+        }
+        public void NewUserToChatInvited(ChatRoom chatRoom)
+        {
+            foreach (var item in DataStorage.onlineUsers)
+            {
+                if(item.Rooms.Select( i => i.id).Contains(chatRoom.id))
+                {
+                    ChatRoomUpdated(this, new ChatRoomEventArgs(chatRoom));
+                }
+            }
+            //// remoteDataStorage.Update(chatRoom); adding user to DB
         }
         public void userConnected(User user)
         {

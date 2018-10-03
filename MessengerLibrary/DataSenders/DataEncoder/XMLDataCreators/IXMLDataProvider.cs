@@ -1,4 +1,5 @@
-﻿using MessengerLibrary.DataSenders.Data;
+﻿using MessengerLibrary.ConnectionDirector;
+using MessengerLibrary.DataSenders.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,5 +15,11 @@ namespace MessengerLibrary.DataEncoder.XMLDataCreators
         string CreateXML(RequestType requestType, ChatRoom user);
         string CreateXML(RequestType requestType, ShortUserData user);
         string CreateXML(RequestType requestType); // do not use this method
+
+        string CreateXML(EventType requestType, User user);
+        string CreateXML(EventType requestType, Message user);
+        string CreateXML(EventType requestType, ChatRoom user);
+        string CreateXML(EventType requestType, ShortUserData user);
+        string CreateXML(EventType requestType); // do not use this method
     }
 }

@@ -1,6 +1,0 @@
-C:\Git\messenger\MessengerLibrary\obj\Debug\MessengerLibrary.csprojAssemblyReference.cache
-C:\Git\messenger\MessengerLibrary\obj\Debug\MessengerLibrary.csproj.CoreCompileInputs.cache
-C:\Git\messenger\MessengerLibrary\bin\Debug\MessengerLibrary.dll
-C:\Git\messenger\MessengerLibrary\bin\Debug\MessengerLibrary.pdb
-C:\Git\messenger\MessengerLibrary\obj\Debug\MessengerLibrary.dll
-C:\Git\messenger\MessengerLibrary\obj\Debug\MessengerLibrary.pdb

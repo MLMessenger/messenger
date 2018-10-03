@@ -12,5 +12,6 @@ namespace MessengerLibrary
         public ShortUserData Sender;
         public long ChatRoomId;
         public string MessageBody;
+        public bool isSystem;
     }
 }
