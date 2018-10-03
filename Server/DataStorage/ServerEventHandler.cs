@@ -1,5 +1,6 @@
 ﻿using MessengerLibrary;
 using MessengerLibrary.ConnectionDirector.Events;
+using Server.DataStorage.Notifications;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,12 +11,30 @@ namespace Server.DataStorage
 {
     public class ServerEventHandler
     {
-        public event EventHandler<UserEventAgrs> NewUserConnected;
-        public event EventHandler<UserEventAgrs> UserDisconnected;
-        public event EventHandler<UserEventAgrs> NewUserRegistered;
+        public event EventHandler<UserEventAgrs>                  NewUserConnected;
+        public event EventHandler<UserEventAgrs>                  UserDisconnected;
+        public event EventHandler<UserEventAgrs>                  NewUserRegistered;
+        public event EventHandler<ExtendedMessageEventArgs>       NewMessageAdded;
+
+
 
         public void registerNewUser(User user)
         {
+            if (!DataStorage.onlineUsers.Contains(user))
+            {
+                DataStorage.onlineUsers.Add(user);
+                // remoteDataStorage.Add(user); adding user to DB
+            }
+        }
+        public void newMessageSent(Message message)
+        {
+            foreach (var item in DataStorage.onlineUsers)
+            {
+                if(item.Rooms.Select(i => i.id).Contains(message.ChatRoomId))
+                {
+                    NewMessageAdded(this, new ExtendedMessageEventArgs(message, item));
+                }
+            }
 
         }
         public void userConnected(User user)
@@ -24,14 +43,14 @@ namespace Server.DataStorage
             {
                 DataStorage.onlineUsers.Add(user);
                 NewConnectionNotification(user);
+                // remoteDataStorage.LoadData(user); better async
             }
         }
         public void userDisconnected(User user)
         {
             if (DataStorage.onlineUsers.Contains(user))
             {
-                if (DataStorage.onlineUsers.Remove(user) &&
-                    DataStorage.onlineUsersSocketDictionary.Remove(user))
+                if (DataStorage.onlineUsers.Remove(user))
                     UserDisconnectedNotification(user);
             }
 

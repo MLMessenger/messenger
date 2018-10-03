@@ -1,0 +1,10 @@
+C:\Git\messenger\Server\bin\Debug\Server.exe.config
+C:\Git\messenger\Server\bin\Debug\Server.exe
+C:\Git\messenger\Server\bin\Debug\Server.pdb
+C:\Git\messenger\Server\bin\Debug\MessengerLibrary.dll
+C:\Git\messenger\Server\bin\Debug\MessengerLibrary.pdb
+C:\Git\messenger\Server\obj\Debug\Server.csprojAssemblyReference.cache
+C:\Git\messenger\Server\obj\Debug\Server.csproj.CoreCompileInputs.cache
+C:\Git\messenger\Server\obj\Debug\Server.csproj.CopyComplete
+C:\Git\messenger\Server\obj\Debug\Server.exe
+C:\Git\messenger\Server\obj\Debug\Server.pdb

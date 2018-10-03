@@ -1,8 +1,11 @@
 ﻿using MessengerLibrary;
+using MessengerLibrary.ConnectionDirector.Events;
 using MessengerLibrary.ConnectionDirector.Parsers;
 using MessengerLibrary.DataReceivers.DataDecoder;
 using Server.DataStorage;
+using Server.DataStorage.Notifications;
 using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -12,6 +15,7 @@ namespace Server
 {
     class Server
     {
+        private Dictionary<long, Socket> onlineUsersSocketDictionary = new Dictionary<long, Socket>();
         private string myHost = System.Net.Dns.GetHostName();
         private IPEndPoint endPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 6767);
         private readonly IXMLParser parser;
@@ -22,7 +26,13 @@ namespace Server
             serverSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.IP);
             serverSocket.Bind(endPoint);
             serverSocket.Listen(1000);
+
+            serverEventHandler.NewMessageAdded += onNewMessageAdded;
+            serverEventHandler.NewUserConnected += onNewUserConnected;
+            serverEventHandler.UserDisconnected += onNewUserDisconnected;
         }
+
+
         public void Run()
         {
             Console.WriteLine("Server started");
@@ -62,8 +72,8 @@ namespace Server
             {
                 case MessengerLibrary.DataSenders.Data.RequestType.Connect:
                     User usr = parser.GetUser(xml);
-                    DataStorage.DataStorage.onlineUsersSocketDictionary.Add(usr, socket);
-                    HandleConnectReuqest(usr);
+                    onlineUsersSocketDictionary.Add(usr.UserId, socket);
+                    serverEventHandler.userConnected(usr);
                     break;
 
                 case MessengerLibrary.DataSenders.Data.RequestType.CreateNewChat:
@@ -76,14 +86,30 @@ namespace Server
                     break;
 
                 case MessengerLibrary.DataSenders.Data.RequestType.SendMessage:
+                    serverEventHandler.newMessageSent(parser.GetMessage(xml));
                     break;
                 default:
                     break;
             }
         }
-        private void HandleConnectReuqest(User user)
+
+
+        //////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////// EVENT HANDLERS FOR "ServerEventHandler"
+        //////////////////////////////////////////////////////////
+        protected void onNewMessageAdded(object sender, ExtendedMessageEventArgs e)
         {
-            serverEventHandler.userConnected(user);
+            
+        }
+
+        protected void onNewUserConnected(object sender, UserEventAgrs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected void onNewUserDisconnected(object sender, UserEventAgrs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }

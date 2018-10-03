@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace Server.DataStorage
 {
-    public class DataStorage
+    public class DataStorage // must be singleton
     {
         public static List<User> onlineUsers = new List<User>();
-        public static Dictionary<User, Socket> onlineUsersSocketDictionary = new Dictionary<User, Socket>();
+
     }
 }
